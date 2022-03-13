@@ -94,7 +94,10 @@ export default function C({ participante }: Props) {
   }
 
   return (
-    <tr style={{background: `${pontos === maisPontos1 && pontos >= 66 ? 'whitesmoke' : ''}`}}>
+    <tr
+      style={{background: `${pontos === maisPontos1 && pontos >= 66 ? 'whitesmoke' : ''}`}}
+      className={`${pontos === menosPontos && maisPontos1 >= 66 ? 'is-selected' : ''}`}
+    >
       <th>
         {nomeConfirmado && nome}
         {!nomeConfirmado && (
