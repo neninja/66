@@ -23,6 +23,8 @@ export default function C({ participante }: Props) {
   } = useParticipantes();
   const [ pontos, setPontos ] = useState(0);
   const [ color, setColor ] = useState('text')
+  const [ nome, setNome ] = useState('')
+  const [ nomeConfirmado, setNomeConfirmado ] = useState(false)
 
   useEffect(() => {
     setPontos(totalDoParticipante(participante))
@@ -41,6 +43,16 @@ export default function C({ participante }: Props) {
       setColor('text')
     }
   }, [maisPontos1, maisPontos2, maisPontos3, menosPontos, pontos])
+
+  function handleAddName(e: React.ChangeEvent<HTMLInputElement>) {
+    setNome(e.target.value);
+  }
+
+  function handleConfirmName(e: React.KeyboardEvent<HTMLInputElement>) {
+    if(e.key === 'Enter') {
+      setNomeConfirmado(true);
+    }
+  }
 
   function handleCorrigePontos(
     e: React.ChangeEvent<HTMLInputElement>, partidaId: number
@@ -84,11 +96,16 @@ export default function C({ participante }: Props) {
   return (
     <tr>
       <th>
-        <Form.Input
-          type="text"
-          size="small"
-          onFocus={handleFocus}
-        />
+        {nomeConfirmado && nome}
+        {!nomeConfirmado && (
+          <Form.Input
+            type="text"
+            size="small"
+            value={nome}
+            onChange={handleAddName}
+            onKeyPress={handleConfirmName}
+          />
+        )}
       </th>
       <th>
         <Tag color={color}>{pontos}</Tag>
