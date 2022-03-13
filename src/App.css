@@ -1,5 +1,10 @@
 table th, table td {
     vertical-align: middle !important;
+    padding: .5em .1em !important;
+}
+
+table th, table td {
+    vertical-align: middle !important;
 }
 
 input::-webkit-outer-spin-button,
