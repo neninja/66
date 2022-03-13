@@ -70,7 +70,6 @@ export default function C({ participante }: Props) {
       ...participantesAnteriores,
       {
         id: p.id,
-        nome: p.nome,
         partidas: partidasAtualizadas
       },
       ...participantesPosteriores
@@ -85,7 +84,14 @@ export default function C({ participante }: Props) {
   return (
     <tr>
       <th>
-        {participante.nome}{" "}<Tag color={color}>{pontos}</Tag>
+        <Form.Input
+          type="text"
+          size="small"
+          onFocus={handleFocus}
+        />
+      </th>
+      <th>
+        <Tag color={color}>{pontos}</Tag>
       </th>
       {participante.partidas.map((p) => (
         <td key={p.id}>

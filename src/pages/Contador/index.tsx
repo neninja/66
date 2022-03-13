@@ -33,7 +33,6 @@ export default function Componente() {
       ...participantes,
       {
         id: nextId,
-        nome: 'Exemplo',
         partidas: ps
       }
     ]);
@@ -47,7 +46,6 @@ export default function Componente() {
 
     const p = participantes.map((p) => ({
       id: p.id,
-      nome: p.nome,
       partidas: [
         ...p.partidas,
         {
@@ -65,7 +63,6 @@ export default function Componente() {
 
     const p = participantes.map((p) => ({
       id: p.id,
-      nome: p.nome,
       partidas: []
     }))
     setParticipantes(p);
@@ -95,6 +92,7 @@ export default function Componente() {
                 {Array.from(Array(partidas).keys()).map((p) => (
                   <th key={p} aria-label={`${p+1}`} style={{textAlign: 'center'}}></th>
                 ))}
+                <th aria-label="pontos"></th>
               </tr>
             </thead>
             <tbody>
