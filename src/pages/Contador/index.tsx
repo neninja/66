@@ -33,6 +33,7 @@ export default function Componente() {
       ...participantes,
       {
         id: nextId,
+        nome: '',
         partidas: ps
       }
     ]);
@@ -46,6 +47,7 @@ export default function Componente() {
 
     const p = participantes.map((p) => ({
       id: p.id,
+      nome: p.nome,
       partidas: [
         ...p.partidas,
         {
@@ -63,6 +65,7 @@ export default function Componente() {
 
     const p = participantes.map((p) => ({
       id: p.id,
+      nome: p.nome,
       partidas: []
     }))
     setParticipantes(p);

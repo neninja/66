@@ -23,11 +23,14 @@ export default function C({ participante }: Props) {
   } = useParticipantes();
   const [ pontos, setPontos ] = useState(0);
   const [ color, setColor ] = useState('text')
-  const [ nome, setNome ] = useState('')
-  const [ nomeConfirmado, setNomeConfirmado ] = useState(false)
+  const [ nomeConfirmado, setNomeConfirmado ] = useState(true)
 
   useEffect(() => {
     setPontos(totalDoParticipante(participante))
+
+    if(!participante.nome) {
+      setNomeConfirmado(false)
+    }
   }, [participante])
 
   useEffect(() => {
@@ -45,7 +48,17 @@ export default function C({ participante }: Props) {
   }, [maisPontos1, maisPontos2, maisPontos3, menosPontos, pontos])
 
   function handleAddName(e: React.ChangeEvent<HTMLInputElement>) {
-    setNome(e.target.value);
+    const participantesAnteriores = participantes.filter((p) => p.id < participante.id);
+    const participantesPosteriores = participantes.filter((p) => p.id > participante.id);
+    setParticipantes([
+      ...participantesAnteriores,
+      {
+        id: participante.id,
+        nome: e.target.value,
+        partidas: participante.partidas
+      },
+      ...participantesPosteriores
+    ]);
   }
 
   function handleConfirmName(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -82,6 +95,7 @@ export default function C({ participante }: Props) {
       ...participantesAnteriores,
       {
         id: p.id,
+        nome: p.nome,
         partidas: partidasAtualizadas
       },
       ...participantesPosteriores
@@ -99,12 +113,12 @@ export default function C({ participante }: Props) {
       className={`${pontos === menosPontos && maisPontos1 >= 66 ? 'is-selected' : ''}`}
     >
       <th>
-        {nomeConfirmado && nome}
+        {nomeConfirmado && participante.nome}
         {!nomeConfirmado && (
           <Form.Input
             type="text"
             size="small"
-            value={nome}
+            value={participante.nome}
             onChange={handleAddName}
             onKeyPress={handleConfirmName}
           />

@@ -7,6 +7,7 @@ export interface Partida {
 
 export interface Participante {
   id: number
+  nome: string
   partidas: Partida[]
 }
 
