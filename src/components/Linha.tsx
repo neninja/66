@@ -65,6 +65,12 @@ export default function C({ participante }: Props) {
     }
   }
 
+  function handleEditName(e: React.MouseEvent<HTMLTableHeaderCellElement>) {
+    if(e.detail === 3) {
+      setNomeConfirmado(false);
+    }
+  }
+
   function handleCorrigePontos(
     e: React.ChangeEvent<HTMLInputElement>, partidaId: number
   ) {
@@ -109,7 +115,7 @@ export default function C({ participante }: Props) {
 
   return (
     <tr style={{background: `${pontos === maisPontos1 && pontos >= 66 ? 'whitesmoke' : ''}`}}>
-      <th>
+      <th onClick={handleEditName}>
         {nomeConfirmado && participante.nome}
         {!nomeConfirmado && (
           <Form.Input
