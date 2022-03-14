@@ -76,13 +76,15 @@ export default function C({ participante }: Props) {
       return;
     }
 
+    const pontos = !e.target.value ? 0 : parseInt(e.target.value);
+
     const partidasAnteriores = p.partidas.filter((pa) => pa.id < partidaId);
     const partidasPosteriores = p.partidas.filter((pa) => pa.id > partidaId);
     const partidasAtualizadas = [
       ...partidasAnteriores,
       {
         id: partidaId,
-        pontos: parseInt(e.target.value)
+        pontos: pontos
       },
       ...partidasPosteriores
     ];
