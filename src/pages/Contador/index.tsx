@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Button, Container, Table, Hero, Heading } from 'react-bulma-components';
+import { Button, Container, Table, Hero } from 'react-bulma-components';
 
 import { FaUserPlus, FaTrashAlt, FaRedo } from 'react-icons/fa';
 import { GiBullHorns } from 'react-icons/gi';
@@ -81,11 +81,6 @@ export default function Componente() {
 
   return (
     <Hero size="fullheight">
-      <Hero.Header>
-        <Heading>
-          Conta 66
-        </Heading>
-      </Hero.Header>
       <Hero.Body>
         <Container>
           <Table size="fullwidth">
