@@ -10,8 +10,6 @@ interface Props {
   participante: Participante
 }
 
-// <tr style={{backgroundColor: 'whitesmoke'}}>
-
 export default function C({ participante }: Props) {
   const {
     maisPontos1,
@@ -108,10 +106,7 @@ export default function C({ participante }: Props) {
   }
 
   return (
-    <tr
-      style={{background: `${pontos === maisPontos1 && pontos >= 66 ? 'whitesmoke' : ''}`}}
-      className={`${pontos === menosPontos && maisPontos1 >= 66 ? 'is-selected' : ''}`}
-    >
+    <tr style={{background: `${pontos === maisPontos1 && pontos >= 66 ? 'whitesmoke' : ''}`}}>
       <th>
         {nomeConfirmado && participante.nome}
         {!nomeConfirmado && (
