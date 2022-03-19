@@ -32,9 +32,14 @@ export function ParticipantesProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const storagedParticipantes = localStorage.getItem('conta66:participantes');
 
-    if (storagedParticipantes) {
-      setParticipantes(JSON.parse(storagedParticipantes));
+    if (!storagedParticipantes) {
+      return;
     }
+
+    const ps = JSON.parse(storagedParticipantes);
+    const pf = ps.filter((p: Participante) => !!p.nome.length);
+
+    setParticipantes(pf);
   }, []);
 
   useEffect(() => {
