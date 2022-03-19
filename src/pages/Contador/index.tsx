@@ -63,6 +63,12 @@ export default function Componente() {
   function handleResetPartidas(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
 
+    const confirmed = window.confirm("Apagar partidas e manter participantes?");
+
+    if(!confirmed) {
+      return;
+    }
+
     const p = participantes.map((p) => ({
       id: p.id,
       nome: p.nome,
@@ -74,6 +80,12 @@ export default function Componente() {
 
   function handleResetPartidasParticipantes(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+
+    const confirmed = window.confirm("Apagar todos participantes?");
+
+    if(!confirmed) {
+      return;
+    }
 
     setParticipantes([]);
     setPartidas(3);
@@ -105,18 +117,18 @@ export default function Componente() {
         </Container>
       </Hero.Body>
       <Hero.Footer>
-        <Button.Group align="center" style={{marginBottom: '1rem'}}>
+        <Button.Group justifyContent="space-around" style={{marginBottom: '1rem'}}>
           <Button color="success" onClick={handleAddParticipante}>
             <FaUserPlus />
-          </Button>
-          <Button color="success" onClick={handleAddPartida}>
-            <GiBullHorns />
           </Button>
           <Button color="warning" onClick={handleResetPartidas}>
             <FaRedo />
           </Button>
           <Button color="danger" onClick={handleResetPartidasParticipantes}>
             <FaTrashAlt />
+          </Button>
+          <Button color="success" onClick={handleAddPartida}>
+            <GiBullHorns />
           </Button>
         </Button.Group>
       </Hero.Footer>
